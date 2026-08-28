@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ชลพรรษา เนียมหอม | Student Portfolio</title>
+
+  <!-- =========================
+       GOOGLE FONTS
+  ========================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- =========================
+       TAILWIND CSS
+  ========================= -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            yellowCute: '#FFD84D',
+            pinkCute: '#FF8FB1',
+            orangeCute: '#FF9B54',
+            creamCute: '#FFF9E6',
+            purpleCute: '#A78BFA'
+          },
+          fontFamily: {
+            mali: ['Mali', 'sans-serif'],
+            thai: ['Noto Sans Thai', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- =========================
+       CUSTOM CSS
+  ========================= -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'Noto Sans Thai', sans-serif;
+      background: #fffdf5;
+      color: #3f3f46;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .cute-font {
+      font-family: 'Mali', sans-serif;
+    }
+
+    /* พื้นหลังลายจุดน่ารัก */
+    .cute-bg {
+      background-color: #fffdf5;
+      background-image:
+        radial-gradient(#ffd84d 1px, transparent 1px),
+        radial-gradient(#ff8fb1 1px, transparent 1px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+
+    /* Glass Navbar */
+    .glass {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Card */
+    .cute-card {
+      background: white;
+      border: 2px solid #ffe9a8;
+      box-shadow: 0 10px 25px rgba(255, 181, 71, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    .cute-card:hover {
+      transform: translateY(-7px) rotate(-0.5deg);
+      box-shadow: 0 18px 35px rgba(255, 143, 177, 0.18);
+      border-color: #ffb6c9;
+    }
+
+    /* ปุ่ม */
+    .cute-button {
+      transition: all 0.3s ease;
+    }
+
+    .cute-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 155, 84, 0.3);
+    }
+
+    /* Blob */
+    .blob {
+      border-radius: 48% 52% 63% 37% / 45% 41% 59% 55%;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Skill bar */
+    .skill-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    /* Floating decoration */
+    .float {
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ลด animation สำหรับผู้ใช้ที่เลือกไว้ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+  <header id="navbar"
+    class="fixed top-0 left-0 right-0 z-50 glass border-b border-yellow-100 transition-all duration-300">
+
+    <nav class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#home"
+        class="flex items-center gap-3 font-bold text-gray-800"
+        aria-label="กลับหน้าหลัก">
+
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-yellowCute via-pinkCute to-orangeCute flex items-center justify-center text-white font-bold text-lg shadow-md">
+          ชพ
+        </div>
+
+        <div class="hidden sm:block">
+          <div class="font-mali text-pink-500 font-bold">
+            ชลพรรษา
+          </div>
+          <div class="text-xs text-gray-500">
+            Student Portfolio
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-7 text-sm font-semibold">
+        <a href="#home" class="hover:text-pink-500 transition">หน้าแรก</a>
+        <a href="#about" class="hover:text-pink-500 transition">เกี่ยวกับฉัน</a>
+        <a href="#skills" class="hover:text-pink-500 transition">ทักษะ</a>
+        <a href="#projects" class="hover:text-pink-500 transition">ผลงาน</a>
+        <a href="#goal" class="hover:text-pink-500 transition">เป้าหมาย</a>
+        <a href="#contact" class="hover:text-pink-500 transition">ติดต่อ</a>
+      </div>
+
+      <!-- Mobile Button -->
+      <button id="menuButton"
+        class="md:hidden w-11 h-11 rounded-xl bg-pink-100 text-pink-500 text-xl"
+        aria-label="เปิดเมนู"
+        aria-expanded="false">
+        ☰
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+      class="hidden md:hidden bg-white border-t border-yellow-100">
+
+      <div class="px-5 py-4 flex flex-col gap-4 font-semibold">
+        <a href="#home">หน้าแรก</a>
+        <a href="#about">เกี่ยวกับฉัน</a>
+        <a href="#skills">ทักษะ</a>
+        <a href="#projects">ผลงาน</a>
+        <a href="#goal">เป้าหมาย</a>
+        <a href="#contact">ติดต่อ</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+    <section id="home"
+      class="min-h-screen cute-bg pt-28 pb-16 px-5 flex items-center">
+
+      <div class="max-w-6xl mx-auto w-full">
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+          <!-- Text -->
+          <div class="reveal">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 text-orange-600 rounded-full text-sm font-bold mb-5">
+              ⭐ นักเรียน ม.3 • สายวิทย์–คณิต
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-800">
+
+              สวัสดีค่ะ
+              <br>
+
+              <span class="text-pink-500">
+                ชลพรรษา เนียมหอม
+              </span>
+
+              <span class="text-orange-400">🌷</span>
+            </h1>
+
+            <h2 class="mt-5 text-xl sm:text-2xl font-bold text-orange-500">
+              Aspiring Science & Mathematics Student
+            </h2>
+
+            <p class="mt-5 text-gray-600 leading-8 max-w-xl">
+              นักเรียนชั้นมัธยมศึกษาปีที่ 3
+              ผู้มีความสนใจด้านวิทยาศาสตร์ คณิตศาสตร์
+              การทดลอง และการเรียนรู้สิ่งใหม่ ๆ
+              พร้อมพัฒนาตนเองเพื่อก้าวสู่เส้นทางการเรียนสายวิทยาศาสตร์
+            </p>
+
+            <div class="flex flex-wrap gap-3 mt-7">
+
+              <a href="#projects"
+                class="cute-button px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-400 to-orange-400 text-white font-bold shadow-md">
+                🌟 ดูผลงานของฉัน
+              </a>
+
+              <a href="#about"
+                class="cute-button px-6 py-3 rounded-2xl bg-yellow-100 text-orange-600 font-bold">
+                💛 รู้จักฉันมากขึ้น
+              </a>
+
+            </div>
+
+            <!-- Badges -->
+            <div class="flex flex-wrap gap-2 mt-7">
+
+              <span class="px-4 py-2 bg-white rounded-full border border-yellow-200 text-sm">
+                🧪 Science Lover
+              </span>
+
+              <span class="px-4 py-2 bg-white rounded-full border border-pink-200 text-sm">
+                📐 Math Lover
+              </span>
+
+              <span class="px-4 py-2 bg-white rounded-full border border-orange-200 text-sm">
+                💡 STEM Interest
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Profile -->
+          <div class="relative reveal">
+
+            <div class="absolute -top-5 -left-3 text-4xl float">
+              🌼
+            </div>
+
+            <div class="absolute -bottom-4 -right-3 text-4xl float">
+              🍊
+            </div>
+
+            <div class="blob bg-gradient-to-br from-yellow-200 via-pink-200 to-orange-200 p-5 max-w-md mx-auto">
+
+              <div class="bg-white rounded-[40px] overflow-hidden shadow-xl">
+
+                <!-- Placeholder -->
+                <img
+                  src="https://placehold.co/600x700/FFF4C2/FF8FB1?text=Chonpansa"
+                  alt="รูปโปรไฟล์ของชลพรรษา เนียมหอม"
+                  class="w-full aspect-[4/5] object-cover">
+
+              </div>
+
+            </div>
+
+            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-white px-5 py-3 rounded-2xl shadow-lg border border-yellow-100 text-center">
+              <div class="font-mali font-bold text-pink-500">
+                ชลพรรษา เนียมหอม
+              </div>
+              <div class="text-xs text-gray-500">
+                M.3 Student 🌷
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         ABOUT SECTION
+    ========================= -->
+    <section id="about" class="py-20 px-5 bg-white">
+
+      <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12 reveal">
+
+          <span class="text-orange-400 font-bold">
+            ✨ ABOUT ME
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-bold mt-2 text-gray-800">
+            รู้จักฉันมากขึ้น 💕
+          </h2>
+
+          <p class="mt-4 text-gray-500">
+            ตัวตน ความสนใจ และเป้าหมายในการเรียนรู้
+          </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+
+          <div class="reveal">
+
+            <div class="rounded-[35px] overflow-hidden border-4 border-yellow-100 shadow-lg">
+
+              <img
+                src="https://placehold.co/700x500/FFF4C2/FF9B54?text=Science+%26+Math"
+                alt="ภาพประกอบความสนใจด้านวิทยาศาสตร์และคณิตศาสตร์"
+                class="w-full h-full object-cover">
+
+            </div>
+
+          </div>
+
+
+          <div class="reveal">
+
+            <h3 class="font-mali text-2xl font-bold text-pink-500">
+              สวัสดีค่ะ ฉันชื่อชลพรรษา 🌷
+            </h3>
+
+            <p class="mt-5 text-gray-600 leading-8">
+              ฉันเป็นนักเรียนชั้น ม.3 ที่มีความสนใจในวิชาวิทยาศาสตร์
+              และคณิตศาสตร์ ชอบการทดลอง การตั้งคำถาม
+              และการค้นหาคำตอบด้วยตัวเอง
+            </p>
+
+            <p class="mt-4 text-gray-600 leading-8">
+              ฉันเชื่อว่าการเรียนรู้ไม่ได้เกิดขึ้นเฉพาะในห้องเรียน
+              แต่เกิดขึ้นจากการลงมือทำ การลองผิดลองถูก
+              และการทำงานร่วมกับผู้อื่น
+            </p>
+
+            <p class="mt-4 text-gray-600 leading-8">
+              เป้าหมายของฉันคือการพัฒนาความรู้และทักษะ
+              เพื่อเตรียมตัวเข้าสู่การเรียนต่อในสายวิทยาศาสตร์
+              และเติบโตเป็นคนที่สามารถนำความรู้ไปสร้างประโยชน์ให้กับสังคม
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Info Cards -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+
+          <div class="cute-card rounded-3xl p-5 reveal">
+            <div class="text-3xl">🎓</div>
+            <h3 class="font-bold mt-3">Education</h3>
+            <p class="text-sm text-gray-500 mt-1">นักเรียนชั้น ม.3</p>
+          </div>
+
+          <div class="cute-card rounded-3xl p-5 reveal">
+            <div class="text-3xl">🔬</div>
+            <h3 class="font-bold mt-3">Interest</h3>
+            <p class="text-sm text-gray-500 mt-1">Science & STEM</p>
+          </div>
+
+          <div class="cute-card rounded-3xl p-5 reveal">
+            <div class="text-3xl">📐</div>
+            <h3 class="font-bold mt-3">Focus</h3>
+            <p class="text-sm text-gray-500 mt-1">Mathematics & Physics</p>
+          </div>
+
+          <div class="cute-card rounded-3xl p-5 reveal">
+            <div class="text-3xl">🌟</div>
+            <h3 class="font-bold mt-3">Goal</h3>
+            <p class="text-sm text-gray-500 mt-1">
+              Science Student
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         SCHOOL SECTION
+    ========================= -->
+    <section class="py-16 px-5 bg-gradient-to-r from-yellow-50 via-pink-50 to-orange-50">
+
+      <div class="max-w-5xl mx-auto text-center reveal">
+
+        <div class="text-5xl mb-5">🏫✨</div>
+
+        <h2 class="font-mali text-2xl sm:text-3xl font-bold text-gray-800">
+          เป้าหมายการศึกษาต่อ
+        </h2>
+
+        <p class="mt-5 text-xl font-bold text-pink-500">
+          โรงเรียนวิทยาศาสตร์จุฬาภรณราชวิทยาลัย พิษณุโลก
+        </p>
+
+        <p class="mt-4 text-gray-600 leading-8 max-w-3xl mx-auto">
+          สนใจศึกษาต่อในสภาพแวดล้อมที่ส่งเสริมการเรียนรู้ด้าน
+          วิทยาศาสตร์ คณิตศาสตร์ เทคโนโลยี และนวัตกรรม
+          พร้อมพัฒนาศักยภาพของตนเองอย่างเต็มที่
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS SECTION
+    ========================= -->
+    <section id="skills" class="py-20 px-5 bg-white">
+
+      <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12 reveal">
+
+          <span class="text-orange-400 font-bold">
+            💡 MY SKILLS
+          </span>
+
+          <h2 class="font-mali text-3xl sm:text-4xl font-bold mt-2">
+            ทักษะและความสามารถ
+          </h2>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Academic -->
+          <div class="cute-card rounded-3xl p-6 reveal">
+
+            <div class="w-14 h-14 rounded-2xl bg-yellow-100 flex items-center justify-center text-3xl">
+              📚
+            </div>
+
+            <h3 class="font-mali text-xl font-bold mt-5">
+              Academic Skills
+            </h3>
+
+            <div class="space-y-5 mt-6">
+
+              <div>
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Mathematics</span>
+                  <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill bg-yellowCute w-[85%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Science</span>
+                  <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill bg-orangeCute w-[85%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Analytical Thinking</span>
+                  <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill bg-pinkCute w-[80%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- Technical -->
+          <div class="cute-card rounded-3xl p-6 reveal">
+
+            <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center text-3xl">
+              🔬
+            </div>
+
+            <h3 class="font-mali text-xl font-bold mt-5">
+              STEM Skills
+            </h3>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+
+              <span class="px-4 py-2 bg-yellow-100 rounded-full text-sm">
+                🔬 Science
+              </span>
+
+              <span class="px-4 py-2 bg-pink-100 rounded-full text-sm">
+                📐 Mathematics
+              </span>
+
+              <span class="px-4 py-2 bg-orange-100 rounded-full text-sm">
+                💻 Technology
+              </span>
+
+              <span class="px-4 py-2 bg-purple-100 rounded-full text-sm">
+                🧪 Experiment
+              </span>
+
+              <span class="px-4 py-2 bg-green-100 rounded-full text-sm">
+                💡 Creativity
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Soft Skills -->
+          <div class="cute-card rounded-3xl p-6 reveal">
+
+            <div class="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-3xl">
+              💕
+            </div>
+
+            <h3 class="font-mali text-xl font-bold mt-5">
+              Soft Skills
+            </h3>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+
+              <span class="px-4 py-2 bg-pink-100 rounded-full text-sm">
+                🤝 Teamwork
+              </span>
+
+              <span class="px-4 py-2 bg-yellow-100 rounded-full text-sm">
+                💡 Problem Solving
+              </span>
+
+              <span class="px-4 py-2 bg-orange-100 rounded-full text-sm">
+                🗣️ Communication
+              </span>
+
+              <span class="px-4 py-2 bg-purple-100 rounded-full text-sm">
+                ⏰ Time Management
+              </span>
+
+              <span class="px-4 py-2 bg-green-100 rounded-full text-sm">
+                🌱 Responsibility
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         PROJECTS SECTION
+    ========================= -->
+    <section id="projects" class="py-20 px-5 cute-bg">
+
+      <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12 reveal">
+
+          <span class="text-pink-500 font-bold">
+            🌈 MY PROJECTS
+          </span>
+
+          <h2 class="font-mali text-3xl sm:text-4xl font-bold mt-2">
+            ผลงานและกิจกรรม
+          </h2>
+
+          <p class="mt-4 text-gray-500">
+            ตัวอย่างผลงานที่สะท้อนความสนใจด้านวิทยาศาสตร์ คณิตศาสตร์ และ STEM
+          </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Project 01 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/FFF0B8/FF9B54?text=Science+Project"
+              alt="ภาพประกอบโครงงานวิทยาศาสตร์"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-orange-500 bg-orange-50 px-3 py-1 rounded-full">
+                SCIENCE
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                โครงงานวิทยาศาสตร์
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                ทดลองและศึกษาคำตอบจากปัญหาที่สนใจ
+                พร้อมฝึกการเก็บข้อมูลและสรุปผล
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                การคิดวิเคราะห์และการทดลอง
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 02 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/FFDCE8/FF6F9C?text=Mathematics"
+              alt="ภาพประกอบกิจกรรมคณิตศาสตร์"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-pink-500 bg-pink-50 px-3 py-1 rounded-full">
+                MATHEMATICS
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                กิจกรรมคณิตศาสตร์
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                ฝึกแก้โจทย์ปัญหาและประยุกต์ใช้คณิตศาสตร์
+                ในสถานการณ์ต่าง ๆ
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                การคิดอย่างเป็นระบบ
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 03 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/FFE5D1/FF9B54?text=STEM"
+              alt="ภาพประกอบกิจกรรม STEM"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-orange-500 bg-orange-50 px-3 py-1 rounded-full">
+                STEM
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                STEM Challenge
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                ร่วมกิจกรรมออกแบบและแก้ปัญหาภายใต้เงื่อนไข
+                ที่กำหนด
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                ความคิดสร้างสรรค์และการทำงานเป็นทีม
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 04 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/E5DEFF/A78BFA?text=Experiment"
+              alt="ภาพประกอบการทดลองวิทยาศาสตร์"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-purple-500 bg-purple-50 px-3 py-1 rounded-full">
+                EXPERIMENT
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                การทดลองวิทยาศาสตร์
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                ฝึกตั้งสมมติฐาน ทดลอง และบันทึกผล
+                อย่างเป็นขั้นตอน
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                กระบวนการทางวิทยาศาสตร์
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 05 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/DFF7E3/4CAF50?text=Teamwork"
+              alt="ภาพประกอบการทำงานเป็นทีม"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-green-600 bg-green-50 px-3 py-1 rounded-full">
+                TEAMWORK
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                กิจกรรมทำงานเป็นทีม
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                ร่วมวางแผน แบ่งหน้าที่ และนำเสนอผลงาน
+                ร่วมกับเพื่อน
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                การสื่อสารและความรับผิดชอบ
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 06 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/FFF4C2/F59E0B?text=Creative+Design"
+              alt="ภาพประกอบการออกแบบสร้างสรรค์"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-yellow-600 bg-yellow-50 px-3 py-1 rounded-full">
+                DESIGN
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                Creative Design
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                ออกแบบชิ้นงานจากแนวคิดของตนเอง
+                และทดลองปรับปรุงให้ดีขึ้น
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                ความคิดสร้างสรรค์
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 07 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/FFE1EA/EC4899?text=Science+Camp"
+              alt="ภาพประกอบค่ายวิทยาศาสตร์"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-pink-500 bg-pink-50 px-3 py-1 rounded-full">
+                SCIENCE CAMP
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                ค่ายวิทยาศาสตร์
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                เรียนรู้ผ่านกิจกรรมและการทดลองนอกห้องเรียน
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                การเรียนรู้จากประสบการณ์จริง
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 08 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/DCEBFF/3B82F6?text=Technology"
+              alt="ภาพประกอบกิจกรรมเทคโนโลยี"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-blue-500 bg-blue-50 px-3 py-1 rounded-full">
+                TECHNOLOGY
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                Technology Activity
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                เรียนรู้การใช้เทคโนโลยีเพื่อสร้างสรรค์ผลงาน
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                การประยุกต์ใช้เทคโนโลยี
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 09 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/DDF7EA/10B981?text=Environment"
+              alt="ภาพประกอบโครงงานสิ่งแวดล้อม"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-green-600 bg-green-50 px-3 py-1 rounded-full">
+                ENVIRONMENT
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                โครงงานสิ่งแวดล้อม
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                ศึกษาปัญหาสิ่งแวดล้อมและหาแนวทางแก้ไข
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                การคิดเพื่อสังคมและสิ่งแวดล้อม
+              </p>
+
+            </div>
+          </article>
+
+
+          <!-- Project 10 -->
+          <article class="cute-card rounded-3xl overflow-hidden reveal">
+
+            <img
+              src="https://placehold.co/600x350/FFE7D6/F97316?text=Future+Project"
+              alt="ภาพประกอบเป้าหมายในอนาคต"
+              class="w-full h-48 object-cover">
+
+            <div class="p-6">
+
+              <span class="text-xs font-bold text-orange-500 bg-orange-50 px-3 py-1 rounded-full">
+                FUTURE
+              </span>
+
+              <h3 class="font-mali text-xl font-bold mt-4">
+                Future Learning Project
+              </h3>
+
+              <p class="text-gray-500 text-sm mt-3 leading-6">
+                วางแผนพัฒนาตนเองและเรียนรู้สิ่งใหม่
+                เพื่อเตรียมพร้อมสำหรับการศึกษาต่อ
+              </p>
+
+              <p class="text-sm mt-4">
+                <b>สิ่งที่ได้เรียนรู้:</b>
+                การตั้งเป้าหมายและพัฒนาตนเอง
+              </p>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         ENGINEERING / FUTURE GOAL
+    ========================= -->
+    <section id="goal" class="py-20 px-5 bg-white">
+
+      <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12 reveal">
+
+          <span class="text-orange-400 font-bold">
+            🌟 MY FUTURE GOAL
+          </span>
+
+          <h2 class="font-mali text-3xl sm:text-4xl font-bold mt-2">
+            เป้าหมายในอนาคต
+          </h2>
+
+          <p class="mt-5 text-gray-600 leading-8 max-w-2xl mx-auto">
+            ฉันอยากพัฒนาความรู้ด้านวิทยาศาสตร์และคณิตศาสตร์
+            และนำความรู้ไปต่อยอดในการเรียนรู้สิ่งใหม่ ๆ
+          </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <div class="cute-card rounded-3xl p-7 text-center reveal">
+
+            <div class="text-5xl">🌱</div>
+
+            <div class="text-sm font-bold text-orange-500 mt-5">
+              STEP 01
+            </div>
+
+            <h3 class="font-mali text-xl font-bold mt-2">
+              ม.4
+            </h3>
+
+            <p class="text-gray-500 mt-3">
+              สร้างพื้นฐาน Mathematics + Science + STEM
+            </p>
+
+          </div>
+
+
+          <div class="cute-card rounded-3xl p-7 text-center reveal">
+
+            <div class="text-5xl">🚀</div>
+
+            <div class="text-sm font-bold text-pink-500 mt-5">
+              STEP 02
+            </div>
+
+            <h3 class="font-mali text-xl font-bold mt-2">
+              ม.ปลาย
+            </h3>
+
+            <p class="text-gray-500 mt-3">
+              พัฒนาความรู้ ทดลองทำโครงงาน
+              และค้นหาความถนัดของตัวเอง
+            </p>
+
+          </div>
+
+
+          <div class="cute-card rounded-3xl p-7 text-center reveal">
+
+            <div class="text-5xl">🎓</div>
+
+            <div class="text-sm font-bold text-orange-500 mt-5">
+              STEP 03
+            </div>
+
+            <h3 class="font-mali text-xl font-bold mt-2">
+              University
+            </h3>
+
+            <p class="text-gray-500 mt-3">
+              ศึกษาต่อในสาขาที่สนใจ
+              และพัฒนาตนเองสู่อนาคต
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         CONTACT SECTION
+    ========================= -->
+    <section id="contact"
+      class="py-20 px-5 bg-gradient-to-br from-yellow-100 via-pink-100 to-orange-100">
+
+      <div class="max-w-4xl mx-auto text-center reveal">
+
+        <div class="text-5xl">
+          💌
+        </div>
+
+        <h2 class="font-mali text-3xl sm:text-4xl font-bold mt-5">
+          ติดต่อฉัน
+        </h2>
+
+        <p class="mt-4 text-gray-600">
+          หากต้องการสอบถามข้อมูลเพิ่มเติม สามารถติดต่อผ่านช่องทางด้านล่าง
+        </p>
+
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-10 text-left">
+
+          <div class="bg-white rounded-3xl p-5 shadow-sm">
+            <div class="text-2xl">📧</div>
+            <div class="font-bold mt-2">Email</div>
+            <div class="text-gray-500 text-sm">
+              [อีเมล]
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl p-5 shadow-sm">
+            <div class="text-2xl">📱</div>
+            <div class="font-bold mt-2">Phone</div>
+            <div class="text-gray-500 text-sm">
+              [เบอร์โทรศัพท์]
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl p-5 shadow-sm">
+            <div class="text-2xl">💻</div>
+            <div class="font-bold mt-2">GitHub</div>
+            <div class="text-gray-500 text-sm">
+              [GitHub URL]
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl p-5 shadow-sm">
+            <div class="text-2xl">📸</div>
+            <div class="font-bold mt-2">Instagram</div>
+            <div class="text-gray-500 text-sm">
+              [Instagram URL]
+            </div>
+          </div>
+
+        </div>
+
+
+        <a
+          href="mailto:[อีเมล]"
+          class="inline-block mt-8 px-7 py-3 rounded-2xl bg-gradient-to-r from-pink-400 to-orange-400 text-white font-bold shadow-lg cute-button">
+          💌 ส่งอีเมล
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+  <footer class="bg-gray-800 text-white py-10 px-5">
+
+    <div class="max-w-6xl mx-auto text-center">
+
+      <div class="font-mali text-2xl font-bold text-yellow-300">
+        ชลพรรษา เนียมหอม 🌷
+      </div>
+
+      <p class="text-gray-300 mt-2">
+        Student Portfolio • Science & Mathematics
+      </p>
+
+      <p class="text-gray-400 text-sm mt-5">
+        © 2026 ชลพรรษา เนียมหอม. All Rights Reserved.
+      </p>
+
+      <p class="text-gray-500 text-xs mt-2">
+        Portfolio สำหรับสมัครเรียนต่อ
+        โรงเรียนวิทยาศาสตร์จุฬาภรณราชวิทยาลัย พิษณุโลก
+      </p>
+
+      <button
+        id="backToTop"
+        class="mt-6 px-5 py-2 rounded-xl bg-yellow-300 text-gray-800 font-bold hover:bg-pink-300 transition">
+        ↑ กลับด้านบน
+      </button>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+  <script>
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuButton.addEventListener('click', () => {
+
+      const isOpen = !mobileMenu.classList.contains('hidden');
+
+      mobileMenu.classList.toggle('hidden');
+
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+
+      menuButton.textContent = isOpen ? '☰' : '✕';
+
+    });
+
+
+    /* =========================
+       ปิด Mobile Menu เมื่อคลิกลิงก์
+    ========================= */
+
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    mobileLinks.forEach(link => {
+
+      link.addEventListener('click', () => {
+
+        mobileMenu.classList.add('hidden');
+
+        menuButton.setAttribute('aria-expanded', 'false');
+
+        menuButton.textContent = '☰';
+
+      });
+
+    });
+
+
+    /* =========================
+       NAVBAR เมื่อ Scroll
+    ========================= */
+
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+
+      if (window.scrollY > 30) {
+
+        navbar.classList.add(
+          'shadow-md',
+          'border-pink-100'
+        );
+
+      } else {
+
+        navbar.classList.remove(
+          'shadow-md',
+          'border-pink-100'
+        );
+
+      }
+
+    });
+
+
+    /* =========================
+       BACK TO TOP
+    ========================= */
+
+    const backToTop = document.getElementById('backToTop');
+
+    backToTop.addEventListener('click', () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+
+    });
+
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================= */
+
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add('show');
+
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    revealElements.forEach(element => {
+      observer.observe(element);
+    });
+
+
+    /* =========================
+       SMOOTH SCROLL
+       ป้องกัน Navbar บังหัวข้อ
+    ========================= */
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+      link.addEventListener('click', function(event) {
+
+        const targetId = this.getAttribute('href');
+
+        if (targetId === '#') return;
+
+        const target = document.querySelector(targetId);
+
+        if (target) {
+
+          event.preventDefault();
+
+          const navbarHeight = navbar.offsetHeight;
+
+          const targetPosition =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            navbarHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
